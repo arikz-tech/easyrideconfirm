@@ -21,16 +21,17 @@ window.onload = function () {
         var latitude = results[0].geometry.location.lat();
         var longitude = results[0].geometry.location.lng();
       }
-      if (latitude = undefined || longitude == undefined) {
+
+      if (latitude = undefined || longitude == undefined)
         alert("Cant find the adress you have entered");
-      } else {
-        window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
-          + "rid=" + rid
-          + "&uid=" + uid
-          + "&index=" + index
-          + "&address=" + address,
-          "_self");
-      }
+
+      window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
+        + "rid=" + rid
+        + "&uid=" + uid
+        + "&index=" + index
+        + "&address=" + address,
+        "_self");
+
     });
   }
 
@@ -39,7 +40,7 @@ window.onload = function () {
       navigator.geolocation.getCurrentPosition(showPosition, showError);
     }
   }
-  
+
   function showPosition(position) {
     var geocoder = new google.maps.Geocoder();
     var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
