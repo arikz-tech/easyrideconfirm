@@ -13,26 +13,12 @@ window.onload = function () {
   });
 
   function sendRequest(rid, uid, index, address) {
-    var geocoder = new google.maps.Geocoder();
-
-    geocoder.geocode({ 'address': address }, function (results, status) {
-
-      if (status == google.maps.GeocoderStatus.OK) {
-        var latitude = results[0].geometry.location.lat();
-        var longitude = results[0].geometry.location.lng();
-      }
-
-      if (latitude = undefined || longitude == undefined)
-        alert("Cant find the adress you have entered");
-
-      window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
+    window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
         + "rid=" + rid
         + "&uid=" + uid
         + "&index=" + index
         + "&address=" + address,
         "_self");
-
-    });
   }
 
   function getLocation() {
