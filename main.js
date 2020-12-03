@@ -11,7 +11,7 @@ window.onload = function () {
   });
 
   function sendRequest(rid,uid,index,address) {
-    if(address!=null){
+    if(address!= ""){
       window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?" 
       + "rid=" + rid
       + "&uid=" + uid
