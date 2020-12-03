@@ -1,6 +1,6 @@
 
 window.onload = function () {
-  var etAddress = document.getElementById("etAddress");
+  var address = document.getElementById("etAddress").value;
   var index = getParameterFromURL("index");
   var rid = getParameterFromURL("rid");
   var uid = getParameterFromURL("uid");
@@ -9,7 +9,7 @@ window.onload = function () {
 
   var btnConfirm = document.getElementById("btnConfirm");
   btnConfirm.addEventListener("click", function () {
-    sendRequest(rid, uid, index, etAddress.value);
+    sendRequest(rid, uid, index, address);
   });
 
   function sendRequest(rid, uid, index, address) {
