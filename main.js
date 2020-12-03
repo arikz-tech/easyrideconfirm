@@ -7,18 +7,18 @@ window.onload = function () {
     var index = getParameterFromURL("index");
     var rid = getParameterFromURL("rid");
     var uid = getParameterFromURL("uid");
-    var info = document.getElementById("info");
     sendRequest(rid,uid,index,address);
   });
 
   function sendRequest(rid,uid,index,address) {
-    console.log("Rid=" + rid + " Index= " + index + " Address= " + address + " uid=" + uid);
-    window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?" 
-    + "rid=" + rid
-    + "&uid=" + uid
-    + "&index=" + index
-    + "&address=" + address,
-    "_self");
+    if(address!=null){
+      window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?" 
+      + "rid=" + rid
+      + "&uid=" + uid
+      + "&index=" + index
+      + "&address=" + address,
+      "_self");
+    }
   }
 
   function getParameterFromURL(parameter) {
