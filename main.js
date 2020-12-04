@@ -27,9 +27,9 @@ window.onload = function () {
         console.log("lat=" + latitude + " lng=" + longitude);
         window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
           + "rid=" + rid
-          + "&index" + index
-          + "&lat" + latitude
-          + "&lng" + longitude,
+          + "&index=" + index
+          + "&lat=" + latitude
+          + "&lng=" + longitude,
           "_self").close;
       }
     });
