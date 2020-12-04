@@ -3,16 +3,15 @@ window.onload = function () {
   var etAddress = document.getElementById("etAddress");
   var index = getParameterFromURL("index");
   var rid = getParameterFromURL("rid");
-  var uid = getParameterFromURL("uid");
 
   getLocation();
 
   var btnConfirm = document.getElementById("btnConfirm");
   btnConfirm.addEventListener("click", function () {
-    sendRequest(rid, uid, index, etAddress.value);
+    sendRequest(rid,index, etAddress.value);
   });
 
-  function sendRequest(rid, uid, index, address) {
+  function sendRequest(rid, index, address) {
     var geocoder = new google.maps.Geocoder();
 
     geocoder.geocode({ 'address': address }, function (results, status) {
@@ -21,14 +20,15 @@ window.onload = function () {
         var latitude = results[0].geometry.location.lat();
         var longitude = results[0].geometry.location.lng();
       }
+
       if (latitude = undefined || longitude == undefined) {
         alert("Cant find the adress you have entered");
       } else {
         window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
           + "rid=" + rid
-          + "&uid=" + uid
-          + "&index=" + index
-          + "&address=" + address,
+          + "&index" + index
+          + "&lat" + latitude
+          + "&lng" + longitude,
           "_self").close;
       }
     });
