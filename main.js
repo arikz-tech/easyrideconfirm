@@ -24,29 +24,12 @@ window.onload = function () {
       if (latitude = undefined || longitude == undefined) {
         alert("Cant find the adress you have entered");
       } else {
-        var str = fetch('https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide')
-          .then(function (response) {                  // first then()
-            if (response.ok) {
-              return response.text();
-            }
-            throw new Error('Something went wrong.');
-          })
-          .then(function (text) {                          // second then()
-            console.log('Request successful', text);
-          })
-          .catch(function (error) {                        // catch
-            console.log('Request failed', error);
-          });
-          console.log(str);
-
-        /*
         window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
           + "rid=" + rid
           + "&uid=" + uid
           + "&index=" + index
           + "&address=" + address,
-          "_self");
-          */
+          "_self").close;
       }
     });
   }
