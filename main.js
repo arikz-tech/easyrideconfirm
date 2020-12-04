@@ -21,7 +21,7 @@ window.onload = function () {
         var longitude = results[0].geometry.location.lng();
       }
 
-      if (latitude = undefined || longitude == undefined) {
+      if (latitude == undefined || longitude == undefined) {
         alert("Cant find the adress you have entered");
       } else {
         console.log("lat=" + latitude + " lng=" + longitude);
