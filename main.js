@@ -1,6 +1,6 @@
 
 window.onload = function () {
-  var address = document.getElementById("etAddress").value;
+  var etAddress = document.getElementById("etAddress");
   var index = getParameterFromURL("index");
   var rid = getParameterFromURL("rid");
   var uid = getParameterFromURL("uid");
@@ -9,16 +9,47 @@ window.onload = function () {
 
   var btnConfirm = document.getElementById("btnConfirm");
   btnConfirm.addEventListener("click", function () {
-    sendRequest(rid, uid, index, address);
+    sendRequest(rid, uid, index, etAddress.value);
   });
 
   function sendRequest(rid, uid, index, address) {
-    window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
-        + "rid=" + rid
-        + "&uid=" + uid
-        + "&index=" + index
-        + "&address=" + address,
-        "_self");
+    var geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode({ 'address': address }, function (results, status) {
+
+      if (status == google.maps.GeocoderStatus.OK) {
+        var latitude = results[0].geometry.location.lat();
+        var longitude = results[0].geometry.location.lng();
+      }
+      if (latitude = undefined || longitude == undefined) {
+        alert("Cant find the adress you have entered");
+      } else {
+        var check = fetch("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            rid: 'rid',
+            uid: 'uid',
+            address: 'address'
+          })
+        }).then(res => {
+          var data = JSON.parse(res.json);
+          console.log(data[0] + data[1] + data[2] + "");
+          return res.JSON
+        })
+
+        /*
+        window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
+          + "rid=" + rid
+          + "&uid=" + uid
+          + "&index=" + index
+          + "&address=" + address,
+          "_self");
+          */
+      }
+    });
   }
 
   function getLocation() {
