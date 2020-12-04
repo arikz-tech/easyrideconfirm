@@ -24,6 +24,7 @@ window.onload = function () {
       if (latitude = undefined || longitude == undefined) {
         alert("Cant find the adress you have entered");
       } else {
+        console.log("lat=" + latitude + " lng=" + longitude);
         window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
           + "rid=" + rid
           + "&index" + index
