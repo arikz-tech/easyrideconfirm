@@ -8,7 +8,7 @@ window.onload = function () {
 
   var btnConfirm = document.getElementById("btnConfirm");
   btnConfirm.addEventListener("click", function () {
-    sendRequest(rid,index, etAddress.value);
+    sendRequest(rid, index, etAddress.value);
   });
 
   function sendRequest(rid, index, address) {
@@ -74,5 +74,23 @@ window.onload = function () {
     var par = parameter;
     return paramter.get(par)
   }
+
+  function getLang() {
+    if (navigator.languages != undefined)
+      return navigator.languages[0];
+    else
+      return navigator.language;
+  }
+
+  function changeLang() {
+    var lang = getLang();
+    if (lang == "he-IL") {
+        document.getElementById("title").innerHTML = "הזמנה לנסיעה";
+        document.getElementById("body").innerHTML = "הוזמנת לנסיעה חדשה, לאישור הגעה הכנס כתובת בשדה ולחץ על הכפתור \"אישור נסיעה\"";
+        document.getElementById("addressLabel").innerHTML = "מיקום איסוף";
+        document.getElementById("confirmLabel").innerHTML = "אישור נסיעה"
+      }
+  }
+  changeLang();
 
 };
