@@ -4,6 +4,9 @@ window.onload = function () {
   var index = getParameterFromURL("index");
   var rid = getParameterFromURL("rid");
 
+  document.getElementById("onConfirm").style.display = "none";
+  document.getElementById("onReject").style.display = "none";
+
   getLocation();
 
   var btnConfirm = document.getElementById("btnConfirm");
@@ -25,12 +28,27 @@ window.onload = function () {
         alert("Cant find the adress you have entered");
       } else {
         console.log("lat=" + latitude + " lng=" + longitude);
-        window.open("https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
+        var proxy = "https://cors-anywhere.herokuapp.com/";
+        var url = "https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
           + "rid=" + rid
           + "&index=" + index
           + "&lat=" + latitude
-          + "&lng=" + longitude,
-          "_self").close;
+          + "&lng=" + longitude;
+        var promise = fetch(proxy + url)
+          .then(res => {
+            if (res.ok) {
+              console.log("SUCCESS");
+              document.getElementById("onConfirm").style.display = "block";
+            } else {
+              console.log("ERROR");
+              document.getElementById("onReject").style.display = "block";
+            }
+            document.getElementById("title").style.display = "none";
+            document.getElementById("body").style.display = "none";
+            document.getElementById("addressLabel").style.display = "none";
+            document.getElementById("confirmLabel").style.display = "none";
+            document.getElementById("container").style.display = "none";
+          });
       }
     });
   }
@@ -85,12 +103,15 @@ window.onload = function () {
   function changeLang() {
     var lang = getLang();
     if (lang == "he-IL") {
-        document.getElementById("title").innerHTML = "הזמנה לנסיעה";
-        document.getElementById("body").innerHTML = "הוזמנת לנסיעה חדשה, לאישור הגעה הכנס כתובת בשדה ולחץ על הכפתור \"אישור נסיעה\"";
-        document.getElementById("addressLabel").innerHTML = "מיקום איסוף";
-        document.getElementById("confirmLabel").innerHTML = "אישור נסיעה"
-      }
+      document.getElementById("title").innerHTML = "הזמנה לנסיעה";
+      document.getElementById("body").innerHTML = "הוזמנת לנסיעה חדשה, לאישור הגעה הכנס כתובת בשדה ולחץ על הכפתור \"אישור נסיעה\"";
+      document.getElementById("addressLabel").innerHTML = "מיקום איסוף";
+      document.getElementById("confirmLabel").innerHTML = "אישור נסיעה";
+      document.getElementById("onConfirm").innerHTML = "נסיעה אושרה בהצלחה";
+      document.getElementById("onReject").innerHTML = "שגיאה בתהליך אישור נסיעה";
+    }
   }
+
   changeLang();
 
 };

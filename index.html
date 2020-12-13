@@ -8,11 +8,15 @@
 </head>
 <body>
   <h1 id="title">Ride Invitation</h1>
+  <h1 id="onConfirm">Ride has been Confirmed</h1>
+  <h1 id="onReject">An error has been occurred during confirmation process</h1>
+
   <h4 id="body">Hello you have been invited for a new ride, to confirm arrival please enter your address and click on the button below</h4>
   
   <script src="main.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnvrgEunno_caWZuvAS9Qm5FKGJQ1MATU&sensor=false"></script>
-  <div class="container">
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnvrgEunno_caWZuvAS9Qm5FKGJQ1MATU"></script>
+  
+  <div class="container" id="container">
     <div class="material-textfield">
       <input placeholder=" " type="text" id="etAddress">
       <label id="addressLabel">Pickup address</label>
