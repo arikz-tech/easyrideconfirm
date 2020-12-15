@@ -43,19 +43,23 @@ window.onload = function () {
               console.log("ERROR");
               document.getElementById("onReject").style.display = "block";
             }
-            document.getElementById("title").style.display = "none";
-            document.getElementById("body").style.display = "none";
-            document.getElementById("addressLabel").style.display = "none";
-            document.getElementById("confirmLabel").style.display = "none";
-            document.getElementById("container").style.display = "none";
-            document.getElementById("pb").style.display = "none";
+            hideEveryThing();
           })
           .catch(error =>{
             console.log("ERROR");
-            document.getElementById("onReject").style.display = "block";
+            hideEveryThing();
           });
       }
     });
+  }
+
+  function hideEveryThing(){
+    document.getElementById("title").style.display = "none";
+    document.getElementById("body").style.display = "none";
+    document.getElementById("addressLabel").style.display = "none";
+    document.getElementById("confirmLabel").style.display = "none";
+    document.getElementById("container").style.display = "none";
+    document.getElementById("pb").style.display = "none";
   }
 
   function getLocation() {
