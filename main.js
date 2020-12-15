@@ -34,7 +34,7 @@ window.onload = function () {
           + "&index=" + index
           + "&lat=" + latitude
           + "&lng=" + longitude;  
-        var promise = fetch(proxy + url)
+        fetch(proxy + url)
           .then(res => {
             if (res.ok) {
               console.log("SUCCESS");
