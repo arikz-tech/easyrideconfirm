@@ -33,7 +33,7 @@ window.onload = function () {
           + "rid=" + rid
           + "&index=" + index
           + "&lat=" + latitude
-          + "&lng=" + longitude;
+          + "&lng=" + longitude;  
         var promise = fetch(proxy + url)
           .then(res => {
             if (res.ok) {
@@ -49,6 +49,10 @@ window.onload = function () {
             document.getElementById("confirmLabel").style.display = "none";
             document.getElementById("container").style.display = "none";
             document.getElementById("pb").style.display = "none";
+          })
+          .catch(error =>{
+            console.log("ERROR");
+            document.getElementById("onReject").style.display = "block";
           });
       }
     });
