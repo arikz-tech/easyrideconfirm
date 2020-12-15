@@ -6,7 +6,7 @@ window.onload = function () {
 
   document.getElementById("onConfirm").style.display = "none";
   document.getElementById("onReject").style.display = "none";
-  document.getElementById("progressbar").style.display = "none";
+  document.getElementById("pb").style.display = "none";
 
   getLocation();
 
@@ -16,6 +16,7 @@ window.onload = function () {
   });
 
   function sendRequest(rid, index, address) {
+    document.getElementById("pb").style.display = "block";
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({ 'address': address }, function (results, status) {
 
@@ -27,7 +28,6 @@ window.onload = function () {
         alert("Cant find the adress you have entered");
       } else {
         console.log("lat=" + latitude + " lng=" + longitude);
-        displayProgressBar();
         var proxy = "https://cors-anywhere.herokuapp.com/";
         var url = "https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
           + "rid=" + rid
@@ -48,25 +48,10 @@ window.onload = function () {
             document.getElementById("addressLabel").style.display = "none";
             document.getElementById("confirmLabel").style.display = "none";
             document.getElementById("container").style.display = "none";
-            document.getElementById("progressbar").style.display = "none";
+            document.getElementById("pb").style.display = "none";
           });
       }
     });
-  }
-
-  function displayProgressBar() {
-    var elem = document.getElementById("progressbar");
-    elem.style.display = "block";
-    var width = 0;
-    setInterval(frame, 30);
-    function frame() {
-      if (width >= 100) {
-        width = 0;
-      } else {
-        width++;
-        elem.style.width = width + "%";
-      }
-    }
   }
 
   function getLocation() {
