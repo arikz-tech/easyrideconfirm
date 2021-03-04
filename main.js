@@ -28,13 +28,12 @@ window.onload = function () {
         alert("Cant find the adress you have entered");
       } else {
         console.log("lat=" + latitude + " lng=" + longitude);
-        var proxy = "https://cors-anywhere.herokuapp.com/";
         var url = "https://us-central1-easyride-ce6b4.cloudfunctions.net/confirmRide?"
           + "rid=" + rid
           + "&index=" + index
           + "&lat=" + latitude
           + "&lng=" + longitude;  
-        fetch(proxy + url)
+        fetch(url)
           .then(res => {
             if (res.ok) {
               console.log("SUCCESS");
